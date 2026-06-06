@@ -6,131 +6,44 @@
   <title>Projects — Anant Bangar</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    .page-hero { padding: 5rem 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 4rem; }
-
-    .projects-list { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 5rem; }
-
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--accent);
-      transform: scaleY(0);
-      transition: transform 0.3s;
-    }
-    .project-card:hover {
-      border-color: rgba(0,212,255,0.25);
-      transform: translateX(4px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-    }
-    .project-card:hover::before { transform: scaleY(1); }
-    .project-card.orange::before { background: var(--accent2); }
-    .project-card.lime::before { background: var(--accent3); }
-
-    .project-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-    .project-title {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.35rem;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.01em;
-    }
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--text2);
-      line-height: 1.75;
-      margin-bottom: 1.25rem;
-      max-width: 680px;
-    }
-    .project-highlights {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      margin-bottom: 1.5rem;
-    }
-    .project-highlights li {
-      font-size: 0.85rem;
-      color: var(--text2);
-      padding-left: 1.2rem;
-      position: relative;
-      line-height: 1.55;
-    }
-    .project-highlights li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 0.75rem;
-    }
-    .project-card.orange .project-highlights li::before { color: var(--accent2); }
-    .project-card.lime .project-highlights li::before { color: var(--accent3); }
-
-    .project-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1rem;
-      min-width: 160px;
-    }
-    .project-year {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text3);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .project-links { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; }
-    .plink {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: var(--text2);
-      border: 1px solid var(--border2);
-      border-radius: var(--radius);
-      padding: 0.35rem 0.85rem;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .plink:hover { color: var(--accent); border-color: rgba(0,212,255,0.3); }
-    .plink.coming {
-      color: var(--text3);
-      border-color: var(--border);
-      cursor: default;
-    }
-    .plink.coming:hover { color: var(--text3); border-color: var(--border); }
-
-    @media (max-width: 768px) {
-      .project-card { grid-template-columns: 1fr; }
-      .project-right { align-items: flex-start; }
-    }
+    .page-hero{padding:5rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:3rem;}
+    /* Filter bar */
+    .filter-bar{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+    .filter-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-right:0.5rem;}
+    .filter-btn{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:var(--radius);border:1px solid var(--border2);color:var(--text2);background:transparent;cursor:pointer;transition:all 0.2s;}
+    .filter-btn:hover{border-color:var(--accent);color:var(--accent);}
+    .filter-btn.active{background:rgba(0,212,255,0.1);border-color:rgba(0,212,255,0.4);color:var(--accent);}
+    /* Cards */
+    .projects-list{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:5rem;}
+    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s,opacity 0.3s;position:relative;overflow:hidden;}
+    .project-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transition:transform 0.3s;}
+    .project-card:hover{border-color:rgba(0,212,255,0.25);transform:translateX(4px);box-shadow:0 8px 32px rgba(0,0,0,0.35);}
+    .project-card:hover::before{transform:scaleY(1);}
+    .project-card.orange::before{background:var(--accent2);}
+    .project-card.lime::before{background:var(--accent3);}
+    .project-card.orange:hover{border-color:rgba(255,107,53,0.25);}
+    .project-card.lime:hover{border-color:rgba(168,255,87,0.25);}
+    .project-meta{display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;flex-wrap:wrap;}
+    .project-title{font-family:var(--font-head);font-weight:700;font-size:1.35rem;color:var(--text);margin-bottom:0.75rem;letter-spacing:-0.01em;}
+    .project-desc{font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;max-width:680px;}
+    .project-highlights{list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.5rem;}
+    .project-highlights li{font-size:0.85rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.55;}
+    .project-highlights li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:0.75rem;}
+    .project-card.orange .project-highlights li::before{color:var(--accent2);}
+    .project-card.lime .project-highlights li::before{color:var(--accent3);}
+    .project-right{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;min-width:160px;}
+    .project-year{font-family:var(--font-mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;}
+    .project-links{display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;}
+    .plink{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.06em;color:var(--text2);border:1px solid var(--border2);border-radius:var(--radius);padding:0.35rem 0.85rem;transition:color 0.2s,border-color 0.2s;}
+    .plink:hover{color:var(--accent);border-color:rgba(0,212,255,0.3);}
+    .plink.coming{color:var(--text3);border-color:var(--border);cursor:default;}
+    .plink.coming:hover{color:var(--text3);border-color:var(--border);}
+    @media(max-width:768px){.project-card{grid-template-columns:1fr;padding:1.5rem;}.project-right{align-items:flex-start;}}
   </style>
 </head>
 <body>
   <div class="page-grid-bg"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
   <nav class="nav">
     <a class="nav-logo" href="index.html">ANANT<span class="dot">.</span></a>
     <ul class="nav-links" id="navLinks">
@@ -141,35 +54,44 @@
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-hire" href="contact.html">Hire Me</a>
-    <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+      <a class="nav-hire" href="contact.html">Hire Me</a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    </div>
   </nav>
-
   <main class="page">
     <div class="container">
-
       <div class="page-hero fade-up">
         <div class="section-label">Built &amp; Shipped</div>
         <h1 class="section-title">Projects</h1>
         <p class="section-sub">Real-world applications across full-stack web, systems programming and backend architecture.</p>
       </div>
 
-      <div class="projects-list">
+      <!-- Filter Bar -->
+      <div class="filter-bar fade-up" id="filterBar">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+        <button class="filter-btn" data-filter="systems">Systems</button>
+        <button class="filter-btn" data-filter="team">Team</button>
+      </div>
 
-        <!-- P1 -->
-        <div class="project-card fade-up">
-          <div class="project-body">
+      <div class="projects-list">
+        <div class="project-card fade-up" data-tags="web fullstack">
+          <div>
             <div class="project-meta">
               <span class="badge badge-lime">In Progress</span>
               <span class="badge badge-cyan">Full-Stack</span>
               <span class="badge badge-dim">Personal</span>
             </div>
             <div class="project-title">AI-Powered Mental Health &amp; Productivity Companion</div>
-            <p class="project-desc">A full-stack web application designed to monitor user activity patterns and surface data-driven insights to enhance productivity and mental well-being. Built with a modular architecture to support future ML and backend integration phases.</p>
+            <p class="project-desc">A full-stack web application designed to monitor user activity patterns and surface data-driven insights to enhance productivity and mental well-being. Modular architecture supports future ML and backend integration phases.</p>
             <ul class="project-highlights">
               <li>Designed and developed the entire frontend interface using semantic HTML and CSS with clean, accessible layouts</li>
               <li>Structured the application with a modular approach so backend (Node/Express) and ML features slot in cleanly</li>
-              <li>Focus on data-driven UX — dashboards and activity tracking patterns planned for next phase</li>
+              <li>Data-driven UX — dashboards and activity tracking patterns planned for next phase</li>
             </ul>
             <div class="tags">
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Python ML</span><span class="tag">Full-Stack</span>
@@ -184,20 +106,19 @@
           </div>
         </div>
 
-        <!-- P2 -->
-        <div class="project-card orange fade-up">
-          <div class="project-body">
+        <div class="project-card orange fade-up" data-tags="web team fullstack">
+          <div>
             <div class="project-meta">
               <span class="badge badge-orange">Team Project</span>
               <span class="badge badge-cyan">Web App</span>
               <span class="badge badge-dim">5 Members</span>
             </div>
             <div class="project-title">Smart Waste Management System</div>
-            <p class="project-desc">A web-based waste reporting and management platform built as a team of 5. Users can report waste collection needs through the frontend, with the backend handling routing, database updates and status tracking.</p>
+            <p class="project-desc">A web-based waste reporting and management platform built as a team of 5. Users report waste collection needs through the frontend; the backend handles routing, database updates and status tracking.</p>
             <ul class="project-highlights">
               <li>Led a 5-member team — coordinated tasks, timelines and code review cycles</li>
-              <li>Built the frontend using JSP and HTML/CSS; collaborated on MySQL database schema and backend logic</li>
-              <li>Managed version control workflows with Git/GitHub across the team and assisted in debugging and manual QA</li>
+              <li>Built frontend using JSP and HTML/CSS; collaborated on MySQL database schema and backend logic</li>
+              <li>Managed Git/GitHub version control workflows across the team; assisted in debugging and manual QA</li>
             </ul>
             <div class="tags">
               <span class="tag">Java</span><span class="tag">Servlets &amp; JSP</span><span class="tag">HTML/CSS</span><span class="tag">MySQL</span><span class="tag">Git</span><span class="tag">Eclipse IDE</span>
@@ -205,29 +126,26 @@
           </div>
           <div class="project-right">
             <div class="project-year">Dec 2025</div>
-            <div class="project-links">
-              <a class="plink" href="#">View GitHub</a>
-            </div>
+            <div class="project-links"><a class="plink" href="#">View GitHub</a></div>
           </div>
         </div>
 
-        <!-- P3 -->
-        <div class="project-card lime fade-up">
-          <div class="project-body">
+        <div class="project-card lime fade-up" data-tags="web">
+          <div>
             <div class="project-meta">
               <span class="badge badge-lime">Live</span>
               <span class="badge badge-cyan">Frontend</span>
               <span class="badge badge-dim">Personal</span>
             </div>
             <div class="project-title">Personal Portfolio Website</div>
-            <p class="project-desc">A personal portfolio website to showcase projects, skills and achievements. Designed and built from scratch with a focus on clean layout, responsiveness and continuous improvement.</p>
+            <p class="project-desc">A personal portfolio website showcasing projects, skills and achievements. Built from scratch with a focus on clean layout, responsiveness and continuous improvement.</p>
             <ul class="project-highlights">
               <li>Structured all web pages using semantic HTML5 with a clean, accessible layout</li>
-              <li>Continuously improving layout, design and responsiveness based on best practices</li>
+              <li>Continuously improving layout, design and responsiveness; added JS enhancements (typed effect, theme toggle, filter)</li>
               <li>Deployed via GitHub Pages for live public access with automatic updates on push</li>
             </ul>
             <div class="tags">
-              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">GitHub Pages</span>
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span>
             </div>
           </div>
           <div class="project-right">
@@ -239,15 +157,14 @@
           </div>
         </div>
 
-        <!-- P4 -->
-        <div class="project-card fade-up">
-          <div class="project-body">
+        <div class="project-card fade-up" data-tags="systems">
+          <div>
             <div class="project-meta">
               <span class="badge badge-cyan">Systems</span>
               <span class="badge badge-dim">Solo</span>
             </div>
             <div class="project-title">Online Authentication System</div>
-            <p class="project-desc">A terminal-based role-based authentication system applying core OOP and systems programming principles. Demonstrates secure user management, access control, and persistent storage without external dependencies.</p>
+            <p class="project-desc">A terminal-based role-based authentication system applying core OOP and systems programming principles. Demonstrates secure user management, access control and persistent storage without external dependencies.</p>
             <ul class="project-highlights">
               <li>Designed role-based access control (RBAC) with distinct permissions per user role</li>
               <li>Implemented persistent data storage using C++ file handling (fstream) to maintain user data across sessions</li>
@@ -259,31 +176,17 @@
           </div>
           <div class="project-right">
             <div class="project-year">Jun 2024</div>
-            <div class="project-links">
-              <a class="plink" href="#">View GitHub</a>
-            </div>
+            <div class="project-links"><a class="plink" href="#">View GitHub</a></div>
           </div>
         </div>
-
       </div>
     </div>
   </main>
-
   <footer class="footer">
     <span>© 2026 Anant Bangar</span>
-    <div class="footer-right">
-      <a href="skills.html">← Skills</a>
-      <a href="experience.html">Next: Experience →</a>
-    </div>
+    <div class="footer-right"><a href="skills.html">← Skills</a><a href="experience.html">Next: Experience →</a></div>
   </footer>
-
-  <script>
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
-    const obs = new IntersectionObserver(entries =>
-      entries.forEach((e,i) => e.isIntersecting && setTimeout(() => e.target.classList.add('visible'), i*100)),
-      { threshold: 0.06 }
-    );
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-  </script>
+  <button id="scrollTop" title="Back to top">↑</button>
+  <script src="main.js"></script>
 </body>
 </html>

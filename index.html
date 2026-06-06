@@ -4,264 +4,127 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anant Bangar — Full-Stack Developer</title>
+  <meta name="description" content="Final-year B.Tech CSE student and Full-Stack Developer. MERN stack, DSA, OOP. Open to full-time roles and internships."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    .hero {
-      min-height: calc(100vh - 64px);
-      display: flex;
-      align-items: center;
-      padding: 4rem 0 5rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 5rem;
-      align-items: center;
-    }
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.75rem;
-    }
-    .status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent3);
-      box-shadow: 0 0 10px var(--accent3);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.55; transform: scale(0.82); }
-    }
-    .eyebrow-text {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text2);
-    }
-    .hero-name {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 0.92;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-    .hero-name .outline {
-      color: transparent;
-      -webkit-text-stroke: 1.5px rgba(0,212,255,0.45);
-    }
-    .hero-role {
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .hero-role::before { content:''; width:28px; height:1px; background:var(--accent); }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--text2);
-      line-height: 1.8;
-      max-width: 500px;
-      margin-bottom: 2.5rem;
-    }
-    .hero-desc strong { color: var(--text); font-weight: 400; }
-    .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; }
-
+    .hero { min-height:calc(100vh - 64px); display:grid; grid-template-columns:1fr 400px; gap:5rem; align-items:center; padding:4rem 0 5rem; }
+    .hero-eyebrow { display:flex; align-items:center; gap:0.75rem; margin-bottom:1.75rem; }
+    .status-dot { width:8px; height:8px; border-radius:50%; background:var(--accent3); box-shadow:0 0 10px var(--accent3); animation:pulseDot 2s ease-in-out infinite; flex-shrink:0; }
+    @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:.55;transform:scale(.82);} }
+    .eyebrow-text { font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text2); }
+    .hero-name { font-family:var(--font-head); font-weight:700; font-size:clamp(3.5rem,8vw,7rem); line-height:0.92; letter-spacing:-0.02em; margin-bottom:0.5rem; color:var(--text); }
+    .hero-name .outline { color:transparent; -webkit-text-stroke:1.5px rgba(0,212,255,0.45); }
+    [data-theme="light"] .hero-name .outline { -webkit-text-stroke-color: rgba(0,153,204,0.5); }
+    .hero-role { font-family:var(--font-mono); font-size:0.95rem; color:var(--accent); letter-spacing:0.05em; margin-bottom:1.75rem; display:flex; align-items:center; gap:0.75rem; min-height:1.6rem; }
+    .hero-role::before { content:''; width:28px; height:1px; background:var(--accent); flex-shrink:0; }
+    #typedRole::after { content:'|'; animation:blink 0.75s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
+    .hero-desc { font-size:1.05rem; color:var(--text2); line-height:1.8; max-width:500px; margin-bottom:2.5rem; }
+    .hero-desc strong { color:var(--text); font-weight:400; }
+    .hero-actions { display:flex; gap:0.85rem; flex-wrap:wrap; }
     /* Right panel */
-    .hero-panel { display: flex; flex-direction: column; gap: 1rem; }
-    .availability-bar {
-      background: var(--surface);
-      border: 1px solid rgba(168,255,87,0.2);
-      border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .avail-left {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--accent3);
-      letter-spacing: 0.08em;
-    }
-    .avail-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--accent3);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    .avail-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .stat-card:hover { border-color: rgba(0,212,255,0.25); transform: translateX(4px); }
-    .stat-icon {
-      width: 42px; height: 42px;
-      background: rgba(0,212,255,0.07);
-      border: 1px solid rgba(0,212,255,0.15);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .stat-card:nth-child(3) .stat-icon { background:rgba(255,107,53,0.07); border-color:rgba(255,107,53,0.15); }
-    .stat-card:nth-child(4) .stat-icon { background:rgba(168,255,87,0.07); border-color:rgba(168,255,87,0.15); }
-    .stat-val {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: var(--text);
-      line-height: 1;
-    }
-    .stat-lbl {
-      font-family: var(--font-mono);
-      font-size: 0.63rem;
-      color: var(--text2);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 0.25rem;
-    }
-
+    .hero-panel { display:flex; flex-direction:column; gap:1rem; }
+    .avail-bar { background:var(--surface); border:1px solid rgba(168,255,87,0.2); border-radius:var(--radius); padding:1rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .avail-left { display:flex; align-items:center; gap:0.6rem; font-family:var(--font-mono); font-size:0.7rem; color:var(--accent3); letter-spacing:0.08em; }
+    .avail-dot { width:7px; height:7px; border-radius:50%; background:var(--accent3); animation:pulseDot 2s ease-in-out infinite; }
+    .avail-badges { display:flex; gap:0.4rem; flex-wrap:wrap; }
+    .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 1.5rem; display:flex; align-items:center; gap:1.25rem; transition:border-color 0.2s,transform 0.2s; }
+    .stat-card:hover { border-color:rgba(0,212,255,0.25); transform:translateX(4px); }
+    .stat-icon { width:42px; height:42px; background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.15); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .stat-card:nth-child(3) .stat-icon { background:rgba(255,107,53,.07); border-color:rgba(255,107,53,.15); }
+    .stat-card:nth-child(4) .stat-icon { background:rgba(168,255,87,.07); border-color:rgba(168,255,87,.15); }
+    .stat-val { font-family:var(--font-head); font-weight:700; font-size:1.4rem; color:var(--text); line-height:1; }
+    .stat-lbl { font-family:var(--font-mono); font-size:0.63rem; color:var(--text2); letter-spacing:0.1em; text-transform:uppercase; margin-top:0.25rem; }
     /* Quick nav */
-    .quick-nav { padding: 3.5rem 0; border-top: 1px solid var(--border); }
-    .qnav-label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 1.5rem;
-    }
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-    }
-    .qlink {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-    .qlink:hover {
-      border-color: rgba(0,212,255,0.3);
-      transform: translateY(-5px);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.4);
-    }
-    .qlink-icon { font-size: 1.35rem; }
-    .qlink-title {
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-    .qlink-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
-    .qlink-arrow { font-size: 0.9rem; color: var(--text3); margin-top: auto; transition: color 0.2s, transform 0.2s; }
-    .qlink:hover .qlink-arrow { color: var(--accent); transform: translate(3px,-2px); }
-
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-panel { flex-direction: row; flex-wrap: wrap; }
-      .stat-card { flex: 1 1 160px; }
-      .availability-bar { flex: 1 1 100%; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+    .quick-nav { padding:3.5rem 0 5rem; border-top:1px solid var(--border); }
+    .qnav-label { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text3); margin-bottom:1.5rem; }
+    .quick-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.85rem; }
+    .qlink { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.4rem 1.25rem; display:flex; flex-direction:column; gap:0.55rem; transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s; }
+    .qlink:hover { border-color:rgba(0,212,255,0.3); transform:translateY(-5px); box-shadow:0 16px 32px rgba(0,0,0,0.4); }
+    .qlink-icon { font-size:1.35rem; }
+    .qlink-title { font-family:var(--font-head); font-weight:600; font-size:0.95rem; color:var(--text); }
+    .qlink-desc { font-size:0.78rem; color:var(--text2); line-height:1.5; flex:1; }
+    .qlink-arrow { font-size:0.9rem; color:var(--text3); margin-top:auto; transition:color 0.2s,transform 0.2s; }
+    .qlink:hover .qlink-arrow { color:var(--accent); transform:translate(3px,-2px); }
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;gap:3rem;min-height:unset;padding:3rem 0 4rem;}
+      .hero-panel{flex-direction:row;flex-wrap:wrap;}
+      .stat-card{flex:1 1 160px;}
+      .avail-bar{flex:1 1 100%;}
+      .quick-grid{grid-template-columns:repeat(2,1fr);}
     }
   </style>
 </head>
 <body>
   <div class="page-grid-bg"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
 
   <nav class="nav">
     <a class="nav-logo" href="index.html">ANANT<span class="dot">.</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="skills.html">Skills</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-hire" href="contact.html">Hire Me</a>
-    <div class="hamburger" id="hamburger" onclick="toggleNav()">
-      <span></span><span></span><span></span>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+      <a class="nav-hire" href="contact.html">Hire Me</a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
   <main class="page">
     <div class="container">
       <section class="hero">
-        <div class="hero-grid">
-          <div>
-            <div class="hero-eyebrow fade-up">
-              <div class="status-dot"></div>
-              <span class="eyebrow-text">Open to Opportunities — Full-Time &amp; Internship</span>
-            </div>
-            <h1 class="hero-name fade-up">ANANT<br><span class="outline">BANGAR</span></h1>
-            <div class="hero-role fade-up">Full-Stack Developer</div>
-            <p class="hero-desc fade-up">
-              Final-year <strong>B.Tech CSE student</strong> at Arya College, Jaipur.
-              Building robust web apps with <strong>MERN stack</strong>, grounded in
-              <strong>DSA, OOP and system fundamentals</strong>.
-              Ready to contribute from day one.
-            </p>
-            <div class="hero-actions fade-up">
-              <a class="btn btn-primary" href="Anant Bangar__resume.pdf" target="_blank">View Resume</a>
-              <a class="btn btn-primary" href="projects.html">View Projects</a>
-              <a class="btn btn-outline" href="about.html">About Me</a>
-              <a class="btn btn-outline" href="contact.html">Contact</a>
+        <div>
+          <div class="hero-eyebrow fade-up">
+            <div class="status-dot"></div>
+            <span class="eyebrow-text">Open to Opportunities — Full-Time &amp; Internship</span>
+          </div>
+          <h1 class="hero-name fade-up">ANANT<br><span class="outline">BANGAR</span></h1>
+          <div class="hero-role fade-up"><span id="typedRole"></span></div>
+          <p class="hero-desc fade-up">
+            Final-year <strong>B.Tech CSE student</strong> at Arya College, Jaipur.
+            Building robust web apps with <strong>MERN stack</strong>, grounded in
+            <strong>DSA, OOP and system fundamentals</strong>.
+            Ready to contribute from day one.
+          </p>
+          <div class="hero-actions fade-up">
+            <a class="btn btn-primary" href="projects.html">View Projects</a>
+            <a class="btn btn-outline" href="about.html">About Me</a>
+            <a class="btn btn-outline" href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="hero-panel fade-up">
+          <div class="avail-bar">
+            <div class="avail-left"><div class="avail-dot"></div>Available Now</div>
+            <div class="avail-badges">
+              <span class="badge badge-cyan">Full-Time</span>
+              <span class="badge badge-lime">Internship</span>
             </div>
           </div>
-
-          <div class="hero-panel fade-up">
-            <div class="availability-bar">
-              <div class="avail-left"><div class="avail-dot"></div>Available Now</div>
-              <div class="avail-badges">
-                <span class="badge badge-cyan">Full-Time</span>
-                <span class="badge badge-lime">Internship</span>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">🎓</div>
-              <div><div class="stat-val">8.3 CGPA</div><div class="stat-lbl">B.Tech CSE — 2027</div></div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">🏆</div>
-              <div><div class="stat-val">Rank 3554</div><div class="stat-lbl">TCS CodeVita S13</div></div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">⭐</div>
-              <div><div class="stat-val">5-Star C++</div><div class="stat-lbl">HackerRank</div></div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">💡</div>
-              <div><div class="stat-val">60+ Solved</div><div class="stat-lbl">LeetCode DSA</div></div>
-            </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <div><div class="stat-val">8.3 CGPA</div><div class="stat-lbl">B.Tech CSE — 2027</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🏆</div>
+            <div><div class="stat-val">Rank 3554</div><div class="stat-lbl">TCS CodeVita S13</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div><div class="stat-val">5-Star C++</div><div class="stat-lbl">HackerRank</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💡</div>
+            <div><div class="stat-val">60+ Solved</div><div class="stat-lbl">LeetCode DSA</div></div>
           </div>
         </div>
       </section>
@@ -269,30 +132,10 @@
       <section class="quick-nav">
         <div class="qnav-label fade-up">Explore Portfolio</div>
         <div class="quick-grid">
-          <a class="qlink fade-up" href="about.html">
-            <div class="qlink-icon">👤</div>
-            <div class="qlink-title">About Me</div>
-            <div class="qlink-desc">Background, education and what drives me</div>
-            <div class="qlink-arrow">↗</div>
-          </a>
-          <a class="qlink fade-up" href="skills.html">
-            <div class="qlink-icon">⚡</div>
-            <div class="qlink-title">Skills</div>
-            <div class="qlink-desc">MERN, C++, Python, DSA and more</div>
-            <div class="qlink-arrow">↗</div>
-          </a>
-          <a class="qlink fade-up" href="projects.html">
-            <div class="qlink-icon">🛠</div>
-            <div class="qlink-title">Projects</div>
-            <div class="qlink-desc">Real-world apps built from scratch</div>
-            <div class="qlink-arrow">↗</div>
-          </a>
-          <a class="qlink fade-up" href="experience.html">
-            <div class="qlink-icon">📋</div>
-            <div class="qlink-title">Experience</div>
-            <div class="qlink-desc">Training, achievements &amp; certs</div>
-            <div class="qlink-arrow">↗</div>
-          </a>
+          <a class="qlink fade-up" href="about.html"><div class="qlink-icon">👤</div><div class="qlink-title">About Me</div><div class="qlink-desc">Background, education and what drives me</div><div class="qlink-arrow">↗</div></a>
+          <a class="qlink fade-up" href="skills.html"><div class="qlink-icon">⚡</div><div class="qlink-title">Skills</div><div class="qlink-desc">MERN, C++, Python, DSA and more</div><div class="qlink-arrow">↗</div></a>
+          <a class="qlink fade-up" href="projects.html"><div class="qlink-icon">🛠</div><div class="qlink-title">Projects</div><div class="qlink-desc">Real-world apps built from scratch</div><div class="qlink-arrow">↗</div></a>
+          <a class="qlink fade-up" href="experience.html"><div class="qlink-icon">📋</div><div class="qlink-title">Experience</div><div class="qlink-desc">Training, achievements &amp; certs</div><div class="qlink-arrow">↗</div></a>
         </div>
       </section>
     </div>
@@ -302,17 +145,10 @@
     <span>© 2026 Anant Bangar</span>
     <div class="footer-right">
       <a href="mailto:anantbangar2005@gmail.com">anantbangar2005@gmail.com</a>
-      <a href="contact.html">Get in Touch</a>
+      <a href="contact.html">Get in Touch →</a>
     </div>
   </footer>
-
-  <script>
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
-    const obs = new IntersectionObserver(entries =>
-      entries.forEach((e,i) => e.isIntersecting && setTimeout(() => e.target.classList.add('visible'), i*90)),
-      { threshold: 0.08 }
-    );
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-  </script>
+  <button id="scrollTop" title="Back to top">↑</button>
+  <script src="main.js"></script>
 </body>
 </html>

@@ -1,324 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Experience — Anant Bangar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    .page-hero { padding: 5rem 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 4rem; }
-
+    .exp-section { margin-bottom:5rem; }
     /* Timeline */
-    .timeline-section { margin-bottom: 5rem; }
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before {
-      content:'';
-      position: absolute;
-      left: 6px; top: 8px; bottom: 0;
-      width: 1px;
-      background: var(--border2);
-    }
-    .tl-item {
-      position: relative;
-      padding-bottom: 2.5rem;
-    }
-    .tl-dot {
-      position: absolute;
-      left: -2rem;
-      top: 6px;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 10px rgba(0,212,255,0.4);
-    }
-    .tl-dot.dim { background: var(--text3); box-shadow: none; }
-
-    .tl-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      transition: border-color 0.2s;
-    }
-    .tl-card:hover { border-color: rgba(0,212,255,0.2); }
-
-    .tl-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.35rem;
-      flex-wrap: wrap;
-    }
-    .tl-role {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-    .tl-period {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .tl-company {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--accent);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.85rem;
-    }
-    .tl-points { display: flex; flex-direction: column; gap: 0.45rem; }
-    .tl-points li {
-      font-size: 0.875rem;
-      color: var(--text2);
-      padding-left: 1.2rem;
-      position: relative;
-      line-height: 1.6;
-    }
-    .tl-points li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 0.72rem;
-    }
-
+    .timeline { position:relative; padding-left:2rem; }
+    .timeline::before { content:''; position:absolute; left:6px; top:8px; bottom:0; width:1px; background:var(--border2); }
+    .tl-item { position:relative; padding-bottom:2.5rem; }
+    .tl-dot { position:absolute; left:-2rem; top:6px; width:14px; height:14px; border-radius:50%; background:var(--accent); border:2px solid var(--bg); box-shadow:0 0 10px rgba(0,212,255,0.4); z-index:1; }
+    .tl-dot.dim { background:var(--text3); box-shadow:none; }
+    .tl-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.75rem; transition:border-color 0.2s; }
+    .tl-card:hover { border-color:rgba(0,212,255,0.2); }
+    .tl-header { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:0.35rem; flex-wrap:wrap; }
+    .tl-role { font-family:var(--font-head); font-weight:700; font-size:1.1rem; color:var(--text); }
+    .tl-period { font-family:var(--font-mono); font-size:0.65rem; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; white-space:nowrap; }
+    .tl-company { font-family:var(--font-mono); font-size:0.72rem; color:var(--accent); letter-spacing:0.06em; margin-bottom:0.85rem; }
+    .tl-points { list-style:none; display:flex; flex-direction:column; gap:0.45rem; }
+    .tl-points li { font-size:0.875rem; color:var(--text2); padding-left:1.2rem; position:relative; line-height:1.6; }
+    .tl-points li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:0.72rem; }
     /* Achievements */
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 5rem;
-    }
-    .ach-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .ach-card:hover { border-color: var(--border2); transform: translateY(-3px); }
-    .ach-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      width: 44px; height: 44px;
-      background: rgba(0,212,255,0.06);
-      border: 1px solid rgba(0,212,255,0.12);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .ach-title {
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .ach-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.55; }
-
-    /* Certifications */
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 5rem;
-    }
-    .cert-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .cert-card:hover { border-color: rgba(0,212,255,0.25); transform: translateY(-3px); }
-    .cert-issuer {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
-    .cert-name {
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      line-height: 1.35;
-    }
-    .cert-link {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text2);
-      border: 1px solid var(--border2);
-      border-radius: 2px;
-      padding: 0.25rem 0.65rem;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .cert-link:hover { color: var(--accent); border-color: rgba(0,212,255,0.3); }
-
-    @media (max-width: 768px) {
-      .achievements-grid { grid-template-columns: 1fr; }
-      .certs-grid { grid-template-columns: 1fr; }
-    }
+    .ach-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+    .ach-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; display:flex; gap:1rem; align-items:flex-start; transition:border-color 0.2s,transform 0.2s; }
+    .ach-card:hover { border-color:var(--border2); transform:translateY(-3px); }
+    .ach-icon { font-size:1.4rem; flex-shrink:0; width:44px; height:44px; background:rgba(0,212,255,0.06); border:1px solid rgba(0,212,255,0.12); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; }
+    .ach-title { font-family:var(--font-head); font-weight:600; font-size:0.95rem; color:var(--text); margin-bottom:0.3rem; }
+    .ach-desc  { font-size:0.8rem; color:var(--text2); line-height:1.55; }
+    /* Certs */
+    .certs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .cert-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; transition:border-color 0.2s,transform 0.2s; }
+    .cert-card:hover { border-color:rgba(0,212,255,0.25); transform:translateY(-3px); }
+    .cert-issuer { font-family:var(--font-mono); font-size:0.62rem; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.6rem; }
+    .cert-name { font-family:var(--font-head); font-weight:600; font-size:0.95rem; color:var(--text); margin-bottom:0.75rem; line-height:1.35; }
+    .cert-link { font-family:var(--font-mono); font-size:0.65rem; color:var(--text2); border:1px solid var(--border2); border-radius:2px; padding:0.25rem 0.65rem; transition:color 0.2s,border-color 0.2s; }
+    .cert-link:hover { color:var(--accent); border-color:rgba(0,212,255,0.3); }
+    @media(max-width:768px){ .ach-grid{grid-template-columns:1fr;} .certs-grid{grid-template-columns:1fr;} .tl-header{flex-direction:column;} }
   </style>
 </head>
 <body>
-  <div class="page-grid-bg"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-
+  <div class="page-grid-bg"></div><div class="orb orb-1"></div><div class="orb orb-2"></div>
   <nav class="nav">
     <a class="nav-logo" href="index.html">ANANT<span class="dot">.</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="experience.html" class="active">Experience</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="skills.html">Skills</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html">Experience</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-hire" href="contact.html">Hire Me</a>
-    <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+      <a class="nav-hire" href="contact.html">Hire Me</a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    </div>
   </nav>
 
-  <main class="page">
-    <div class="container">
-      <div class="page-hero fade-up">
-        <div class="section-label">Background</div>
-        <h1 class="section-title">Experience</h1>
-        <p class="section-sub">Training programs, competitive achievements and industry certifications.</p>
-      </div>
+  <main class="page"><div class="container">
+    <div class="page-hero fade-up">
+      <div class="section-label">Background</div>
+      <h1 class="section-title">Experience</h1>
+      <p class="section-sub">Training programs, competitive achievements and industry certifications.</p>
+    </div>
 
-      <!-- Training -->
-      <div class="timeline-section">
-        <div class="section-label fade-up">Training &amp; Internships</div>
-        <h2 class="section-title fade-up">Professional Training</h2>
-        <div class="section-divider"></div>
-        <div class="timeline">
-          <div class="tl-item fade-up">
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <div class="tl-header">
-                <div class="tl-role">Full-Stack Web Development</div>
-                <div class="tl-period">Sep 2025 — Present</div>
-              </div>
-              <div class="tl-company">Grass Solution Pvt. Ltd.</div>
-              <ul class="tl-points">
-                <li>Building full-stack web applications using the MERN stack (MongoDB, Express, React, Node.js), integrating frontend UIs with backend REST APIs</li>
-                <li>Applying SDLC fundamentals with version control (Git) across feature branches; focusing on clean code, data integrity and system reliability</li>
-                <li>Gaining real-world exposure to production development workflows including code reviews and testing practices</li>
-              </ul>
-              <div class="tags" style="margin-top:1rem;">
-                <span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Git</span><span class="tag">REST APIs</span>
-              </div>
+    <div class="exp-section">
+      <div class="section-label fade-up">Training &amp; Internships</div>
+      <h2 class="section-title fade-up">Professional Training</h2>
+      <div class="section-divider"></div>
+      <div class="timeline">
+        <div class="tl-item fade-up">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header"><div class="tl-role">Full-Stack Web Development</div><div class="tl-period">Sep 2025 — Present</div></div>
+            <div class="tl-company">Grass Solution Pvt. Ltd.</div>
+            <ul class="tl-points">
+              <li>Building full-stack web applications using the MERN stack (MongoDB, Express, React, Node.js), integrating frontend UIs with backend REST APIs</li>
+              <li>Applying SDLC fundamentals with version control (Git) across feature branches; focusing on clean code, data integrity and system reliability</li>
+              <li>Gaining real-world exposure to production development workflows including code reviews and testing practices</li>
+            </ul>
+            <div class="tags" style="margin-top:1rem;">
+              <span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Git</span><span class="tag">REST APIs</span>
             </div>
           </div>
-          <div class="tl-item fade-up">
-            <div class="tl-dot dim"></div>
-            <div class="tl-card">
-              <div class="tl-header">
-                <div class="tl-role">Salesforce Programming Architect</div>
-                <div class="tl-period">Jun 2025 — Aug 2025</div>
-              </div>
-              <div class="tl-company">TechForce Academy</div>
-              <ul class="tl-points">
-                <li>Gained hands-on exposure to Salesforce platform fundamentals: data modeling, role-based access control and automation workflows</li>
-                <li>Worked with structured data, validation rules and process automation, understanding principles of maintainable enterprise software</li>
-                <li>Completed and earned Salesforce Programming Architect certification</li>
-              </ul>
-              <div class="tags" style="margin-top:1rem;">
-                <span class="tag">Salesforce</span><span class="tag">Data Modeling</span><span class="tag">RBAC</span><span class="tag">Automation</span>
-              </div>
+        </div>
+        <div class="tl-item fade-up">
+          <div class="tl-dot dim"></div>
+          <div class="tl-card">
+            <div class="tl-header"><div class="tl-role">Salesforce Programming Architect</div><div class="tl-period">Jun 2025 — Aug 2025</div></div>
+            <div class="tl-company">TechForce Academy</div>
+            <ul class="tl-points">
+              <li>Gained hands-on exposure to Salesforce platform fundamentals: data modeling, role-based access control and automation workflows</li>
+              <li>Worked with structured data, validation rules and process automation, understanding principles of maintainable enterprise software</li>
+              <li>Completed and earned Salesforce Programming Architect certification</li>
+            </ul>
+            <div class="tags" style="margin-top:1rem;">
+              <span class="tag">Salesforce</span><span class="tag">Data Modeling</span><span class="tag">RBAC</span><span class="tag">Automation</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Achievements -->
+    <div class="exp-section">
       <div class="section-label fade-up">Recognition</div>
       <h2 class="section-title fade-up">Achievements</h2>
       <div class="section-divider"></div>
-      <div class="achievements-grid">
-        <div class="ach-card fade-up">
-          <div class="ach-icon">🏆</div>
-          <div>
-            <div class="ach-title">TCS CodeVita Season 13</div>
-            <div class="ach-desc">Ranked 3554 among Round-1 qualified participants — one of India's largest coding competitions. Demonstrates strong algorithmic problem-solving under pressure.</div>
-          </div>
-        </div>
-        <div class="ach-card fade-up">
-          <div class="ach-icon">⭐</div>
-          <div>
-            <div class="ach-title">5-Star C++ — HackerRank</div>
-            <div class="ach-desc">Earned 5-star rating in C++ on HackerRank, reflecting advanced proficiency in data structures, algorithms and language mastery.</div>
-          </div>
-        </div>
-        <div class="ach-card fade-up">
-          <div class="ach-icon">💡</div>
-          <div>
-            <div class="ach-title">LeetCode — 60+ DSA Problems</div>
-            <div class="ach-desc">Actively solving DSA problems spanning arrays, trees, graphs, dynamic programming and more to sharpen algorithmic thinking.</div>
-          </div>
-        </div>
-        <div class="ach-card fade-up">
-          <div class="ach-icon">🌍</div>
-          <div>
-            <div class="ach-title">International AI Olympiad 2018</div>
-            <div class="ach-desc">International Rank 4822 · State Rank 1301. Recognized among top state-level participants in an international AI competition at a young age.</div>
-          </div>
-        </div>
+      <div class="ach-grid">
+        <div class="ach-card fade-up"><div class="ach-icon">🏆</div><div><div class="ach-title">TCS CodeVita Season 13</div><div class="ach-desc">Ranked 3554 among Round-1 qualified participants — one of India's largest coding competitions.</div></div></div>
+        <div class="ach-card fade-up"><div class="ach-icon">⭐</div><div><div class="ach-title">5-Star C++ — HackerRank</div><div class="ach-desc">Earned 5-star rating in C++ on HackerRank, reflecting advanced proficiency in algorithms and language mastery.</div></div></div>
+        <div class="ach-card fade-up"><div class="ach-icon">💡</div><div><div class="ach-title">LeetCode — 60+ DSA Problems</div><div class="ach-desc">Actively solving DSA problems spanning arrays, trees, graphs, DP and more to sharpen algorithmic thinking.</div></div></div>
+        <div class="ach-card fade-up"><div class="ach-icon">🌍</div><div><div class="ach-title">International AI Olympiad 2018</div><div class="ach-desc">International Rank 4822 · State Rank 1301. Recognized among top state-level participants in an international AI competition.</div></div></div>
       </div>
+    </div>
 
-      <!-- Certifications -->
-      <div class="section-label fade-up" style="margin-top:1rem;">Credentials</div>
+    <div class="exp-section">
+      <div class="section-label fade-up">Credentials</div>
       <h2 class="section-title fade-up">Certifications</h2>
       <div class="section-divider"></div>
       <div class="certs-grid">
-        <div class="cert-card fade-up">
-          <div class="cert-issuer">Infosys Springboard</div>
-          <div class="cert-name">Python — Core Programming</div>
-          <a class="cert-link" href="#">View Credential ↗</a>
-        </div>
-        <div class="cert-card fade-up">
-          <div class="cert-issuer">Infosys Springboard</div>
-          <div class="cert-name">Python — NumPy for Multi-dimensional Data</div>
-          <a class="cert-link" href="#">View Credential ↗</a>
-        </div>
-        <div class="cert-card fade-up">
-          <div class="cert-issuer">TechForce Academy</div>
-          <div class="cert-name">Salesforce Programming Architect</div>
-          <a class="cert-link" href="#">View Credential ↗</a>
-        </div>
+        <div class="cert-card fade-up"><div class="cert-issuer">Infosys Springboard</div><div class="cert-name">Python — Core Programming</div><a class="cert-link" href="#">View Credential ↗</a></div>
+        <div class="cert-card fade-up"><div class="cert-issuer">Infosys Springboard</div><div class="cert-name">Python — NumPy for Multi-dimensional Data</div><a class="cert-link" href="#">View Credential ↗</a></div>
+        <div class="cert-card fade-up"><div class="cert-issuer">TechForce Academy</div><div class="cert-name">Salesforce Programming Architect</div><a class="cert-link" href="#">View Credential ↗</a></div>
       </div>
-
     </div>
-  </main>
+  </div></main>
 
   <footer class="footer">
     <span>© 2026 Anant Bangar</span>
-    <div class="footer-right">
-      <a href="projects.html">← Projects</a>
-      <a href="contact.html">Next: Contact →</a>
-    </div>
+    <div class="footer-right"><a href="projects.html">← Projects</a><a href="contact.html">Contact →</a></div>
   </footer>
-
-  <script>
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
-    const obs = new IntersectionObserver(entries =>
-      entries.forEach((e,i) => e.isIntersecting && setTimeout(() => e.target.classList.add('visible'), i*90)),
-      { threshold: 0.07 }
-    );
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-  </script>
+  <button id="scrollTop" title="Back to top">↑</button>
+  <script src="main.js"></script>
 </body>
 </html>

@@ -1,329 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact — Anant Bangar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- EmailJS — uncomment and add your public key once set up -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init('zhqUC7bAwQdcyWiJc');
+</script>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    .page-hero { padding: 5rem 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 4rem; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-      margin-bottom: 5rem;
-    }
-
-    /* Left */
-    .contact-headline {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
-    }
-    .contact-headline span { color: var(--accent); }
-
-    .contact-intro {
-      font-size: 0.95rem;
-      color: var(--text2);
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .contact-items { display: flex; flex-direction: column; gap: 0.85rem; }
-    .citem {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .citem:hover {
-      border-color: rgba(0,212,255,0.3);
-      transform: translateX(5px);
-    }
-    .citem-icon {
-      width: 38px; height: 38px;
-      background: rgba(0,212,255,0.07);
-      border: 1px solid rgba(0,212,255,0.15);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .citem-label {
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text3);
-    }
-    .citem-val { font-size: 0.875rem; color: var(--text); }
-
-    /* Right — form */
-    .form-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.25rem;
-    }
-    .form-title {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-    }
-    .form-group { margin-bottom: 1.1rem; }
-    .form-label {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 0.45rem;
-    }
-    .form-input, .form-textarea {
-      width: 100%;
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: var(--radius);
-      padding: 0.8rem 1rem;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 300;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-    .form-input:focus, .form-textarea:focus {
-      border-color: rgba(0,212,255,0.4);
-      box-shadow: 0 0 0 3px rgba(0,212,255,0.06);
-    }
-    .form-textarea { resize: vertical; min-height: 130px; }
-    .form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
-
-    .form-submit {
-      width: 100%;
-      margin-top: 0.5rem;
-      padding: 0.9rem;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      border-radius: var(--radius);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 500;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .form-note {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text3);
-      text-align: center;
-      margin-top: 0.75rem;
-    }
-
-    /* Profiles section */
-    .profiles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .profile-link {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-    }
-    .profile-link:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
-    .profile-link-icon { font-size: 1.6rem; }
-    .profile-link-name {
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    .profile-link-handle { font-size: 0.78rem; color: var(--text2); font-family: var(--font-mono); }
-    .profile-link-desc { font-size: 0.75rem; color: var(--text3); }
-
-    /* Success message */
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--accent3);
-      letter-spacing: 0.06em;
-    }
-
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .profiles-grid { grid-template-columns: 1fr; }
-    }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-bottom:5rem; }
+    .contact-headline { font-family:var(--font-head); font-weight:700; font-size:clamp(2rem,4vw,3.2rem); line-height:1.05; letter-spacing:-0.02em; margin-bottom:1.25rem; color:var(--text); }
+    .contact-headline span { color:var(--accent); }
+    .contact-intro { font-size:0.95rem; color:var(--text2); line-height:1.8; margin-bottom:2.5rem; }
+    .contact-intro strong { color:var(--text); font-weight:400; }
+    .contact-items { display:flex; flex-direction:column; gap:0.85rem; }
+    .citem { display:flex; align-items:center; gap:1rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.25rem; text-decoration:none; color:inherit; transition:border-color 0.2s,transform 0.2s; }
+    .citem:hover { border-color:rgba(0,212,255,0.3); transform:translateX(5px); }
+    .citem-icon { width:38px; height:38px; background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.15); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+    .citem-label { font-family:var(--font-mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text3); }
+    .citem-val { font-size:0.875rem; color:var(--text); }
+    /* Form */
+    .form-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:2.25rem; }
+    .form-title { font-family:var(--font-head); font-weight:700; font-size:1.2rem; margin-bottom:1.5rem; color:var(--text); }
+    .form-group { margin-bottom:1.1rem; }
+    .form-label { display:block; font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text3); margin-bottom:0.45rem; }
+    .form-input, .form-textarea { width:100%; background:var(--bg2); border:1px solid var(--border2); border-radius:var(--radius); padding:0.8rem 1rem; color:var(--text); font-family:var(--font-body); font-size:0.9rem; font-weight:300; transition:border-color 0.2s,box-shadow 0.2s; outline:none; }
+    .form-input:focus, .form-textarea:focus { border-color:rgba(0,212,255,0.4); box-shadow:0 0 0 3px rgba(0,212,255,0.06); }
+    .form-textarea { resize:vertical; min-height:130px; }
+    .form-input::placeholder, .form-textarea::placeholder { color:var(--text3); }
+    .form-submit { width:100%; margin-top:0.5rem; padding:0.9rem; background:var(--accent); color:var(--bg); border:none; border-radius:var(--radius); font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
+    .form-submit:hover { opacity:0.88; transform:translateY(-1px); }
+    .form-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+    .form-note { font-family:var(--font-mono); font-size:0.65rem; color:var(--text3); text-align:center; margin-top:0.75rem; }
+    /* Profiles */
+    .profiles-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:5rem; }
+    .profile-link { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:0.6rem; transition:border-color 0.2s,transform 0.2s; }
+    .profile-link:hover { border-color:rgba(0,212,255,0.3); transform:translateY(-4px); }
+    .profile-link-icon { font-size:1.6rem; }
+    .profile-link-name { font-family:var(--font-head); font-weight:600; font-size:0.9rem; color:var(--text); }
+    .profile-link-handle { font-size:0.78rem; color:var(--text2); font-family:var(--font-mono); }
+    .profile-link-desc { font-size:0.75rem; color:var(--text3); }
+    @media(max-width:768px){ .contact-grid{grid-template-columns:1fr;gap:2.5rem;} .profiles-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
-  <div class="page-grid-bg"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
+  <div class="page-grid-bg"></div><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
   <nav class="nav">
     <a class="nav-logo" href="index.html">ANANT<span class="dot">.</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="skills.html">Skills</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html">Experience</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-hire" href="mailto:anantbangar2005@gmail.com">Email Me</a>
-    <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+      <a class="nav-hire" href="mailto:anantbangar2005@gmail.com">Email Me</a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    </div>
   </nav>
 
-  <main class="page">
-    <div class="container">
-
-      <div class="page-hero fade-up">
-        <div class="section-label">Get in Touch</div>
-        <h1 class="section-title">Contact</h1>
-        <p class="section-sub">Open to full-time software engineering roles and internships. Let's build something together.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="fade-up">
-          <h2 class="contact-headline">Let's build<br>something<br><span>meaningful.</span></h2>
-          <p class="contact-intro">
-            I'm a final-year CSE student actively looking for opportunities as a <strong style="color:var(--text)">Full-Stack Developer</strong>.
-            Whether it's a full-time role, internship, or interesting collaboration — I'd love to connect.
-            I respond quickly.
-          </p>
-          <div class="contact-items">
-            <a class="citem" href="mailto:anantbangar2005@gmail.com">
-              <div class="citem-icon">✉️</div>
-              <div><div class="citem-label">Email</div><div class="citem-val">anantbangar2005@gmail.com</div></div>
-            </a>
-            <a class="citem" href="tel:+919909365782">
-              <div class="citem-icon">📞</div>
-              <div><div class="citem-label">Phone</div><div class="citem-val">+91 9909365782</div></div>
-            </a>
-            <a class="citem" href="https://linkedin.com" target="_blank">
-              <div class="citem-icon">💼</div>
-              <div><div class="citem-label">LinkedIn</div><div class="citem-val">linkedin.com/in/anant-bangar</div></div>
-            </a>
-            <div class="citem" style="cursor:default">
-              <div class="citem-icon">📍</div>
-              <div><div class="citem-label">Location</div><div class="citem-val">Jaipur, Rajasthan, India</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="fade-up">
-          <div class="form-card">
-            <div class="form-title">Send a Message</div>
-            <form id="contactForm" onsubmit="submitForm(event)">
-              <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input class="form-input" type="text" placeholder="John Doe" required/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email Address</label>
-                <input class="form-input" type="email" placeholder="john@company.com" required/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Subject</label>
-                <input class="form-input" type="text" placeholder="Full-Time Opportunity / Internship / Collaboration" required/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Message</label>
-                <textarea class="form-textarea" placeholder="Tell me about the role, project or opportunity..." required></textarea>
-              </div>
-              <button class="form-submit" type="submit">Send Message →</button>
-              <div class="form-note">I'll get back within 24 hours.</div>
-            </form>
-            <div class="success-msg" id="successMsg">
-              ✓ Message sent! I'll get back to you soon.
-            </div>
-            <div class="form-note" style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); color:var(--text3); font-size:0.75rem;">
-              <em>Form in progress.</em> For now, please reach me via <a href="mailto:anantbangar2005@gmail.com" style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(0,212,255,0.3);">email</a> or <a href="tel:+919909365782" style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(0,212,255,0.3);">phone</a>.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Profiles -->
-      <div class="section-label fade-up">Online Presence</div>
-      <h2 class="section-title fade-up">Find Me On</h2>
-      <div class="section-divider"></div>
-      <div class="profiles-grid" style="margin-bottom:5rem;">
-        <a class="profile-link fade-up" href="https://linkedin.com" target="_blank">
-          <div class="profile-link-icon">💼</div>
-          <div class="profile-link-name">LinkedIn</div>
-          <div class="profile-link-handle">@anant-bangar</div>
-          <div class="profile-link-desc">Professional profile</div>
-        </a>
-        <a class="profile-link fade-up" href="https://www.hackerrank.com/profile/anantbangar33" target="_blank">
-          <div class="profile-link-icon">⭐</div>
-          <div class="profile-link-name">HackerRank</div>
-          <div class="profile-link-handle">5-Star C++</div>
-          <div class="profile-link-desc">Coding challenges</div>
-        </a>
-        <a class="profile-link fade-up" href="https://leetcode.com/u/anantbangar17/" target="_blank">
-          <div class="profile-link-icon">💡</div>
-          <div class="profile-link-name">LeetCode</div>
-          <div class="profile-link-handle">60+ Solved</div>
-          <div class="profile-link-desc">DSA practice</div>
-        </a>
-      </div>
-
+  <main class="page"><div class="container">
+    <div class="page-hero fade-up">
+      <div class="section-label">Get in Touch</div>
+      <h1 class="section-title">Contact</h1>
+      <p class="section-sub">Open to full-time software engineering roles and internships. Let's build something together.</p>
     </div>
-  </main>
+
+    <div class="contact-grid">
+      <div class="fade-up">
+        <h2 class="contact-headline">Let's build<br>something<br><span>meaningful.</span></h2>
+        <p class="contact-intro">I'm a final-year CSE student actively looking for opportunities as a <strong>Full-Stack Developer</strong>. Whether it's a full-time role, internship, or interesting collaboration — I'd love to connect. I respond quickly.</p>
+        <div class="contact-items">
+          <a class="citem" href="mailto:anantbangar2005@gmail.com"><div class="citem-icon">✉️</div><div><div class="citem-label">Email</div><div class="citem-val">anantbangar2005@gmail.com</div></div></a>
+          <a class="citem" href="tel:+919909365782"><div class="citem-icon">📞</div><div><div class="citem-label">Phone</div><div class="citem-val">+91 9909365782</div></div></a>
+          <a class="citem" href="https://linkedin.com" target="_blank"><div class="citem-icon">💼</div><div><div class="citem-label">LinkedIn</div><div class="citem-val">linkedin.com/in/anant-bangar</div></div></a>
+          <div class="citem" style="cursor:default"><div class="citem-icon">📍</div><div><div class="citem-label">Location</div><div class="citem-val">Jaipur, Rajasthan, India</div></div></div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="form-card">
+          <div class="form-title">Send a Message</div>
+          <form id="contactForm">
+            <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" name="name" placeholder="John Doe" required/></div>
+            <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" name="email" placeholder="john@company.com" required/></div>
+            <div class="form-group"><label class="form-label">Subject</label><input class="form-input" type="text" name="subject" placeholder="Full-Time / Internship / Collaboration" required/></div>
+            <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" name="message" placeholder="Tell me about the role, project or opportunity..." required></textarea></div>
+            <button class="form-submit" type="submit">Send Message →</button>
+            <div class="form-note">I'll get back within 24 hours.</div>
+          </form>
+          <div class="form-msg" id="formMsg"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label fade-up">Online Presence</div>
+    <h2 class="section-title fade-up">Find Me On</h2>
+    <div class="section-divider"></div>
+    <div class="profiles-grid">
+      <a class="profile-link fade-up" href="https://www.linkedin.com/in/anant-bangar-53167528a/" target="_blank"><div class="profile-link-icon">💼</div><div class="profile-link-name">LinkedIn</div><div class="profile-link-handle">@anant-bangar</div><div class="profile-link-desc">Professional profile</div></a>
+      <a class="profile-link fade-up" href="https://www.hackerrank.com/profile/anantbangar33" target="_blank"><div class="profile-link-icon">⭐</div><div class="profile-link-name">HackerRank</div><div class="profile-link-handle">5-Star C++</div><div class="profile-link-desc">Coding challenges</div></a>
+      <a class="profile-link fade-up" href="https://leetcode.com/u/anantbangar17/" target="_blank"><div class="profile-link-icon">💡</div><div class="profile-link-name">LeetCode</div><div class="profile-link-handle">60+ Solved</div><div class="profile-link-desc">DSA practice</div></a>
+    </div>
+  </div></main>
 
   <footer class="footer">
     <span>© 2026 Anant Bangar — Full-Stack Developer</span>
-    <div class="footer-right">
-      <a href="experience.html">← Experience</a>
-      <a href="index.html">Home</a>
-    </div>
+    <div class="footer-right"><a href="experience.html">← Experience</a><a href="index.html">Home</a></div>
   </footer>
-
-  <script>
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
-
-    function submitForm(e) {
-      e.preventDefault();
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }
-
-    const obs = new IntersectionObserver(entries =>
-      entries.forEach((e,i) => e.isIntersecting && setTimeout(() => e.target.classList.add('visible'), i*90)),
-      { threshold: 0.07 }
-    );
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-  </script>
+  <button id="scrollTop" title="Back to top">↑</button>
+  <script src="main.js"></script>
 </body>
 </html>
