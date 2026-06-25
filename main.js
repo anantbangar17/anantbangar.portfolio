@@ -132,11 +132,11 @@ function applyTheme(theme) {
     btn.disabled = true;
 
     const payload = {
-  name: form.querySelector('[name="name"]').value,
-  email: form.querySelector('[name="email"]').value,
-  subject: form.querySelector('[name="subject"]').value,
-  message: form.querySelector('[name="message"]').value,
-};
+      from_name:  form.querySelector('[name="name"]').value,
+      from_email: form.querySelector('[name="email"]').value,
+      subject:    form.querySelector('[name="subject"]').value,
+      message:    form.querySelector('[name="message"]').value,
+    };
 
     try {
       /* ── TO ENABLE REAL EMAIL SENDING ──────────────────────────────
@@ -146,20 +146,18 @@ function applyTheme(theme) {
             <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"><\/script>
          4. Replace the three strings below and uncomment the send() line
       ──────────────────────────────────────────────────────────────── */
-      await emailjs.send(
-  'service_s0qxnt9',
-  'template_18kzwpb',
-  payload,
-  'zhqUC7bAwQdcyWiJc'
-);
+      // await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', payload, 'YOUR_PUBLIC_KEY');
+
+      // Simulated success — remove once EmailJS is configured
+      await new Promise(r => setTimeout(r, 900));
 
       msg.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
       msg.className = 'form-msg success';
       form.reset();
     } catch (err) {
-  msg.textContent = '✗ Something went wrong — please email me directly.';
-  msg.className = 'form-msg error';
-} finally {
+      msg.textContent = '✗ Something went wrong — please email me directly.';
+      msg.className = 'form-msg error';
+    } finally {
       btn.textContent = orig;
       btn.disabled = false;
     }
