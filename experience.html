@@ -32,12 +32,25 @@
     .ach-desc  { font-size:0.8rem; color:var(--text2); line-height:1.55; }
     /* Certs */
     .certs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-    .cert-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; transition:border-color 0.2s,transform 0.2s; }
-    .cert-card:hover { border-color:rgba(0,212,255,0.25); transform:translateY(-3px); }
-    .cert-issuer { font-family:var(--font-mono); font-size:0.62rem; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.6rem; }
-    .cert-name { font-family:var(--font-head); font-weight:600; font-size:0.95rem; color:var(--text); margin-bottom:0.75rem; line-height:1.35; }
-    .cert-link { font-family:var(--font-mono); font-size:0.65rem; color:var(--text2); border:1px solid var(--border2); border-radius:2px; padding:0.25rem 0.65rem; transition:color 0.2s,border-color 0.2s; }
+    .cert-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s; }
+    .cert-card:hover { border-color:rgba(0,212,255,0.25); transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,0.35); }
+    .cert-img-wrap { position:relative; width:100%; margin-bottom:1.1rem; border-radius:2px; overflow:hidden; border:1px solid var(--border); background:var(--bg2); cursor:zoom-in; }
+    .cert-img { width:100%; display:block; aspect-ratio:16/9; object-fit:cover; object-position:top center; transition:transform 0.35s; }
+    .cert-card:hover .cert-img { transform:scale(1.04); }
+    .cert-img-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.5); color:#fff; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.1em; display:flex; align-items:center; justify-content:center; gap:0.4rem; opacity:0; transition:opacity 0.2s; }
+    .cert-card:hover .cert-img-overlay { opacity:1; }
+    .cert-issuer { font-family:var(--font-mono); font-size:0.62rem; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem; }
+    .cert-name { font-family:var(--font-head); font-weight:600; font-size:0.95rem; color:var(--text); margin-bottom:0.35rem; line-height:1.35; }
+    .cert-date { font-family:var(--font-mono); font-size:0.62rem; color:var(--text3); margin-bottom:0.75rem; }
+    .cert-link { font-family:var(--font-mono); font-size:0.65rem; color:var(--text2); border:1px solid var(--border2); border-radius:2px; padding:0.25rem 0.65rem; transition:color 0.2s,border-color 0.2s; display:inline-block; }
     .cert-link:hover { color:var(--accent); border-color:rgba(0,212,255,0.3); }
+    /* Lightbox */
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.93); z-index:9998; align-items:center; justify-content:center; padding:2rem; cursor:zoom-out; }
+    .lightbox.open { display:flex; animation:lbFadeIn 0.2s ease; }
+    @keyframes lbFadeIn { from{opacity:0;} to{opacity:1;} }
+    .lightbox img { max-width:90vw; max-height:88vh; object-fit:contain; border-radius:var(--radius); box-shadow:0 20px 60px rgba(0,0,0,0.8); }
+    .lb-close { position:absolute; top:1.25rem; right:1.5rem; font-size:2rem; color:#fff; cursor:pointer; opacity:0.65; background:none; border:none; line-height:1; transition:opacity 0.2s; }
+    .lb-close:hover { opacity:1; }
     @media(max-width:768px){ .ach-grid{grid-template-columns:1fr;} .certs-grid{grid-template-columns:1fr;} .tl-header{flex-direction:column;} }
   </style>
 </head>
@@ -143,9 +156,36 @@
       <h2 class="section-title fade-up">Certifications</h2>
       <div class="section-divider"></div>
       <div class="certs-grid">
-        <div class="cert-card fade-up"><div class="cert-issuer">Infosys Springboard</div><div class="cert-name">Python — Core Programming</div><a class="cert-link" href="#">View Credential ↗</a></div>
-        <div class="cert-card fade-up"><div class="cert-issuer">Infosys Springboard</div><div class="cert-name">Python — NumPy for Multi-dimensional Data</div><a class="cert-link" href="#">View Credential ↗</a></div>
-        <div class="cert-card fade-up"><div class="cert-issuer">TechForce Academy</div><div class="cert-name">Salesforce Programming Architect</div><a class="cert-link" href="#">View Credential ↗</a></div>
+        <div class="cert-card fade-up">
+          <div class="cert-img-wrap" onclick="openLightbox('assets/certs/cert-python.jpg')">
+            <img class="cert-img" src="assets/certs/cert-python.jpg" alt="Python Certificate — Infosys Springboard" loading="lazy"/>
+            <div class="cert-img-overlay">🔍 View Full</div>
+          </div>
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Learning Python</div>
+          <div class="cert-date">Issued: August 10, 2024</div>
+          <a class="cert-link" href="assets/certs/cert-python.jpg" target="_blank">View Credential ↗</a>
+        </div>
+        <div class="cert-card fade-up">
+          <div class="cert-img-wrap" onclick="openLightbox('assets/certs/cert-numpy.jpg')">
+            <img class="cert-img" src="assets/certs/cert-numpy.jpg" alt="NumPy Certificate — Infosys Springboard" loading="lazy"/>
+            <div class="cert-img-overlay">🔍 View Full</div>
+          </div>
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Python — Introduction to NumPy for Multi-dimensional Data</div>
+          <div class="cert-date">Issued: August 14, 2024</div>
+          <a class="cert-link" href="assets/certs/cert-numpy.jpg" target="_blank">View Credential ↗</a>
+        </div>
+        <div class="cert-card fade-up">
+          <div class="cert-img-wrap" onclick="openLightbox('assets/certs/cert-salesforce.jpg')">
+            <img class="cert-img" src="assets/certs/cert-salesforce.jpg" alt="Salesforce Certificate — TechForce Academy" loading="lazy"/>
+            <div class="cert-img-overlay">🔍 View Full</div>
+          </div>
+          <div class="cert-issuer">TechForce Academy</div>
+          <div class="cert-name">Salesforce Programming Architect</div>
+          <div class="cert-date">Issued: August 29, 2025 &nbsp;·&nbsp; Code: Z75umY</div>
+          <a class="cert-link" href="assets/certs/cert-salesforce.jpg" target="_blank">View Credential ↗</a>
+        </div>
       </div>
     </div>
   </div></main>
@@ -154,7 +194,25 @@
     <span>© 2026 Anant Bangar</span>
     <div class="footer-right"><a href="projects.html">← Projects</a><a href="contact.html">Contact →</a></div>
   </footer>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="Certificate"/>
+  </div>
+
   <button id="scrollTop" title="Back to top">↑</button>
   <script src="main.js"></script>
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+  </script>
 </body>
 </html>
