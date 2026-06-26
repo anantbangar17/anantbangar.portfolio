@@ -146,10 +146,7 @@ function applyTheme(theme) {
             <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"><\/script>
          4. Replace the three strings below and uncomment the send() line
       ──────────────────────────────────────────────────────────────── */
-      // await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', payload, 'YOUR_PUBLIC_KEY');
-
-      // Simulated success — remove once EmailJS is configured
-      await new Promise(r => setTimeout(r, 900));
+      await emailjs.send('service_s0qxnt9', 'template_18kzwpb', payload, 'zhqUC7bAwQdcyWiJc');
 
       msg.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
       msg.className = 'form-msg success';
